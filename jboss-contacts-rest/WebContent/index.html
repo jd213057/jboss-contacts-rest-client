@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jboss-contacts-rest</title>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script type ="text/javascript"> 
+// $(document).ready(function () {
+// 			$("li").click(function () {
+// 				display();
+// 			});
+// function display(){
+// 	let url ="rest/contacts/all";
+// 	$.getJSON(url,function(contact){
+// let html ="<ul>";
+// 		for(let i=0; i<contact.length; i++) {
+// html +="<li>" +contact[i].nom+"</li>";
+// 		}
+// 		html +="</ul>";
+// 		$("#conteneur").html(html);
+// });
+// }
+
+
+
+function search() {
+	$("#conteneur").html("");
+	let url ="rest/contacts/all";
+	$.getJSON(url,function(contacts){
+		let ul =$("<ul>");
+	$.each(contacts,function(key,val) {
+		
+		let li =$("<li class='contact'>");
+			li.text(val.civilite+" "+val.prenom+" "+val.nom);
+			li.data("id",val.id);
+			li.data("adresses",val.adresses);
+			li.data("rue",val2.rue);
+			li.data("ville",val2.ville);
+			ul.append(li);
+	
+	$("#conteneur").append(ul);
+	$(".contact").click(function(evt){
+		// alert($(this).data("adresses"));
+		// alert($(this).data("rue"));
+		showAdresse(this).data("id");
+	});}
+	);});
+}		
+
+$(document).ready(function () {
+			$("#btn").click(function () {
+				search();
+			});
+		});</script>
+</head>
+<body>
+	<button id="btn"type="button">Tous les contacts</button>
+<div id="conteneur">Bonjour</div>
+</body>
+</html>
